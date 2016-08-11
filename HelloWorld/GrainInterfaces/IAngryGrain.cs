@@ -9,5 +9,6 @@ namespace GrainInterfaces
 {
     public interface IAngryGrain : IGrainWithGuidKey
     {
+        Task<string> ToUpper(string input);
     }
 }

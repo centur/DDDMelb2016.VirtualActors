@@ -36,6 +36,8 @@ namespace ConsoleClient
                 var cmd = Console.ReadLine();
                 if (string.IsNullOrWhiteSpace(cmd)) break;
 
+                var grain = GrainClient.GrainFactory.GetGrain<IAngryGrain>(Guid.NewGuid());
+                var result = await grain.ToUpper(cmd);
 
                 Console.WriteLine(result);
             }

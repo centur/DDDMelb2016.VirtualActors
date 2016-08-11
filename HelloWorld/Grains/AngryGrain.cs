@@ -10,5 +10,6 @@ namespace Grains
 {
     public class AngryGrain : Grain, IAngryGrain
     {
+        public Task<string> ToUpper(string input) => Task.FromResult(input?.ToUpper());
     }
 }
