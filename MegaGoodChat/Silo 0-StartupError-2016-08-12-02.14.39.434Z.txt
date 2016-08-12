@@ -1,0 +1,19 @@
+2016-08-12-02.14.39.434ZZ
+ERROR starting Orleans silo name=Silo 0 Exception=
+Exc level 0: System.AggregateException: One or more errors occurred.
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait(TimeSpan timeout)
+   at Orleans.OrleansTaskExtentions.WaitWithThrow(Task task, TimeSpan timeout)
+   at Orleans.Runtime.Silo.DoStart()
+   at Orleans.Runtime.Silo.Start()
+   at Orleans.Runtime.Host.SiloHost.StartOrleansSilo(Boolean catchExceptions)
+Exc level 1: System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at System.Collections.ObjectModel.ReadOnlyDictionary`2.get_Item(TKey key)
+   at ConsoleSilo.OrleansFileStorage.Init(String name, IProviderRuntime providerRuntime, IProviderConfiguration config) in C:\dev\DDDMelb2016.VirtualActors\MegaGoodChat\ConsoleSilo\OrleansFileStorage.cs:line 29
+   at Orleans.Providers.ProviderLoader`1.<InitProviders>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Orleans.Runtime.Scheduler.SchedulerExtensions.<>c__DisplayClass1_0.<<QueueTask>b__0>d.MoveNext()
