@@ -10,27 +10,12 @@ using Orleans.Runtime;
 
 namespace Grains
 {
+    // TODO: Implement IRemindable so that the grain can receive reminders!
     [StorageProvider(ProviderName = "Default")]
-    public class EggTimerGrain : Grain<EggTimerState>, IEggTimerGrain, IRemindable
+    public class EggTimerGrain : Grain<EggTimerState> //TODO: , IEggTimerGrain
     {
-        public async Task RemindRoom(IChatRoomGrain room, string message, int seconds)
-        {
-            this.State.Message = message;
-            this.State.Room = room;
-            await this.WriteStateAsync();
-
-            // Create the reminder.
-            await this.RegisterOrUpdateReminder("timer_expired", TimeSpan.FromSeconds(seconds), TimeSpan.FromMinutes(1));
-        }
-        
-        public async Task ReceiveReminder(string reminderName, TickStatus status)
-        {
-            await this.State.Room.SendMessage($"EggTimer_{this.GetPrimaryKey()}", this.State.Message);
-
-            // Unregister the reminder.
-            var reminder = await this.GetReminder(reminderName);
-            await this.UnregisterReminder(reminder);
-        }
+        // TODO: Write some state so we know what to do when the reminder fires
+        // TODO: Register a reminder
     }
 
     [Serializable]

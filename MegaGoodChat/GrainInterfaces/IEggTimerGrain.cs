@@ -7,8 +7,5 @@ using Orleans;
 
 namespace GrainInterfaces
 {
-    public interface IEggTimerGrain : IGrainWithGuidKey
-    {
-        Task RemindRoom(IChatRoomGrain room, string message, int seconds);
-    }
+    // TODO: Create an IEggTimerGrain : IGrainWithGuidKey - we will use a Guid key because it's easy to generate random guids for each reminder.
 }

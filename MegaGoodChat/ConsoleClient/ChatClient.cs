@@ -53,8 +53,7 @@ namespace ConsoleClient
                 return;
             }
 
-            var timer = GrainClient.GrainFactory.GetGrain<IEggTimerGrain>(Guid.NewGuid());
-            await timer.RemindRoom(currentRoomGrain, message, seconds);
+            // TODO: Get a random IEggTimerGrain and use it to set a reminder.
         }
 
         public async Task SendMessage(string message)
