@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Orleans.Providers.Streams.SimpleMessageStream;
 using Orleans.Runtime.Configuration;
 using Orleans.Runtime.Host;
 using Orleans.Storage;
@@ -16,6 +17,8 @@ namespace ConsoleSilo
         {
             var config = ClusterConfiguration.LocalhostPrimarySilo();
             config.Globals.RegisterStorageProvider<OrleansFileStorage>("Default");
+            config.Globals.RegisterStorageProvider<MemoryStorage>("PubSubStore");
+            config.Globals.RegisterStreamProvider<SimpleMessageStreamProvider>("InMemory");
             config.Defaults.TraceFilePattern = null;
 
             // Let the user start multiple silos on different ports.

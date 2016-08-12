@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatMessage.cs" />
+    <Compile Include="IStatisticsCollectorGrain.cs" />
+    <Compile Include="ICharCountGrain.cs" />
     <Compile Include="IChatRoomGrain.cs" />
     <Compile Include="IChatRoomObserver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

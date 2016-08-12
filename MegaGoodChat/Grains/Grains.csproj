@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharCountGrain.cs" />
+    <Compile Include="CharGuidConverter.cs" />
+    <Compile Include="StatisticsCollectorGrain.cs" />
     <Compile Include="ChatRoomGrain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

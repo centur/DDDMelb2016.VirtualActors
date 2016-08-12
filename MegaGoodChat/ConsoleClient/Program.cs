@@ -67,6 +67,11 @@ namespace ConsoleClient
                             var users = await client.GetUsers();
                             Console.WriteLine("\t" + string.Join("\n\t", users));
                         }
+                        else if (tokens[0] == "/stats")
+                        {
+                            ConsoleLog.LogCommand("stats", null);
+                            await client.PrintStats();
+                        }
                         else
                         {
                             ConsoleLog.LogError($"Unknown command, \"{tokens[0]}\"");
@@ -93,6 +98,7 @@ namespace ConsoleClient
             Console.WriteLine("/leave\tLeaves the current room");
             Console.WriteLine("{message}\tSends a message to the current room");
             Console.WriteLine("/users\tList users in the current room");
+            Console.WriteLine("/stats\tPrints chat message statistics");
         }
     }
 }

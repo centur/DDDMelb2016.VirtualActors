@@ -56,6 +56,22 @@ namespace Grains
             {
                 user.OnMessage(message);
             }
+
+            // Send the message off to be procesed in some stream.
+            await SendMessageToStream(message);
+        }
+
+        private async Task SendMessageToStream(ChatMessage message)
+        {
+            if (string.IsNullOrWhiteSpace(message.Body)) return;
+
+            // Pick a stream based on the first character
+            // Note: this is some contrived way of fanning out processing of messages.
+            var id = CharGuidConverter.GetGuid(message.Body[0]);
+            var stream = GetStreamProvider("InMemory").GetStream<ChatMessage>(id, "messages");
+
+            // Push the message to the stream.
+            await stream.OnNextAsync(message);
         }
     }
 
