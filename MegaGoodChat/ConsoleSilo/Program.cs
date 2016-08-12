@@ -15,6 +15,11 @@ namespace ConsoleSilo
         static void Main(string[] args)
         {
             var config = ClusterConfiguration.LocalhostPrimarySilo();
+
+            // So that we can keep data stored between runs, we implemented a very simple file-based
+            // Storage provider.
+            // Note that storage providers exist for many different databases/services, such as:
+            // Azure Tables/Blobs, SQL Server, Azure DocumentDB, MongoDB, Redis, and more.
             config.Globals.RegisterStorageProvider<OrleansFileStorage>("Default");
             config.Defaults.TraceFilePattern = null;
 

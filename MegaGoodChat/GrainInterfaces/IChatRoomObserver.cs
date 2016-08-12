@@ -9,6 +9,12 @@ namespace GrainInterfaces
 {
     public interface IChatRoomObserver : IGrainObserver
     {
-        void OnMessage(ChatMessage message);
+        // TODO: Add an 'OnMessage' method.
+        // The interface should inherit from IGrainObserver so that Orleans knows about it.
+        // The method must return void because observers are one-way
+
+        // Note: Observers can also return Task, but we wont cover that today.
+
+        // TODO: What other methods would be interesting here? Join/Leave notifications, maybe?
     }
 }

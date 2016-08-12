@@ -67,6 +67,10 @@ namespace ConsoleClient
                             var users = await client.GetUsers();
                             Console.WriteLine("\t" + string.Join("\n\t", users));
                         }
+
+                        // TODO: Add a /nuke command which deletes all messages in a room.
+                        // TODO: Add a /pm {user} {message} command which sends a messag to a specific user in a room.
+
                         else
                         {
                             ConsoleLog.LogError($"Unknown command, \"{tokens[0]}\"");

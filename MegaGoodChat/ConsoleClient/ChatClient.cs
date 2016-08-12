@@ -6,7 +6,7 @@ using Orleans;
 
 namespace ConsoleClient
 {
-    class ChatClient : IChatRoomObserver
+    class ChatClient :  IChatRoomObserver
     {
         private readonly IChatRoomObserver observerReference;
         private IChatRoomGrain currentRoomGrain;
@@ -25,12 +25,17 @@ namespace ConsoleClient
 
         // Get the grain based on the 
         public void SetCurrentRoom(string roomName)
-            => currentRoomGrain = GrainClient.GrainFactory.GetGrain<IChatRoomGrain>(roomName);
+        {
+            // TODO: Use GrainClient.GrainFactory to get a reference to the IChatRoomGrain with the specified id (roomName)
+            throw new NotImplementedException("set the currentRoomGrain variable");
+        }
 
         public async Task JoinRoom(string roomName)
         {
             SetCurrentRoom(roomName);
-            await currentRoomGrain.JoinRoom(UserName, observerReference);
+            // TODO: call the grain's JoinRoom method and send it the observerReference so that it can call us
+            // back whenever a new message arrives.
+            throw new NotImplementedException("Join the room");
         }
 
         public async Task LeaveRoom()
@@ -40,8 +45,9 @@ namespace ConsoleClient
                 Console.WriteLine("Join/switch to a room with /join {room}");
                 return;
             }
-
-            await currentRoomGrain.LeaveRoom(UserName);
+            
+            // TODO: call the LeaveRoom on the room grain.
+            throw new NotImplementedException("Leave the room");
             currentRoomGrain = null;
         }
 
@@ -53,11 +59,13 @@ namespace ConsoleClient
                 return;
             }
 
-            await currentRoomGrain.SendMessage(UserName, message);
+            // TODO: call the SendMessage on the room grain.
+            throw new NotImplementedException("Send a message to the room");
         }
 
         public Task<List<string>> GetUsers() => currentRoomGrain.GetUsers();
 
+        //TODO: Add this method to IChatRoomObserver
         // This method will be called whenever a new message is sent from any of the rooms we are joined to.
         // This is the implementation of IChatRoomObserver
         public void OnMessage(ChatMessage message)

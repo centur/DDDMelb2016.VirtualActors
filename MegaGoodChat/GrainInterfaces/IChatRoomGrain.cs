@@ -9,9 +9,12 @@ namespace GrainInterfaces
 {
     public interface IChatRoomGrain : IGrainWithStringKey
     {
-        Task JoinRoom(string userName, IChatRoomObserver client);
+        // TODO: Add a JoinRoom method which takes a username and an IChatRoomObserver.
+        // The observer will receive all recent messages and all new messages.
+
         Task LeaveRoom(string userName);
         Task<List<string>> GetUsers();
-        Task SendMessage(string userName, string body);
+
+        // TODO: Add a SendMessage method which takes a username & message, then broadcasts that message to all observers.
     }
 }
