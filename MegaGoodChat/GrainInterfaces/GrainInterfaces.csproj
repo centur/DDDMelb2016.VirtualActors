@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="ChatMessage.cs" />
     <Compile Include="IChatRoomGrain.cs" />
+    <Compile Include="IEggTimerGrain.cs" />
     <Compile Include="IChatRoomObserver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -45,6 +45,18 @@ namespace ConsoleClient
             currentRoomGrain = null;
         }
 
+        public async Task SetTimer(string message, int seconds)
+        {
+            if (currentRoomGrain == null)
+            {
+                Console.WriteLine("Join/switch to a room with /join {room}");
+                return;
+            }
+
+            var timer = GrainClient.GrainFactory.GetGrain<IEggTimerGrain>(Guid.NewGuid());
+            await timer.RemindRoom(currentRoomGrain, message, seconds);
+        }
+
         public async Task SendMessage(string message)
         {
             if (currentRoomGrain == null)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Orleans;
 using Orleans.Runtime.Configuration;
@@ -67,6 +68,13 @@ namespace ConsoleClient
                             var users = await client.GetUsers();
                             Console.WriteLine("\t" + string.Join("\n\t", users));
                         }
+                        else if (tokens[0] == "/egg")
+                        {
+                            var seconds = int.Parse(tokens[1]);
+                            var message = string.Join(" ", tokens.Skip(2));
+                            ConsoleLog.LogCommand("set reminder", $"in {seconds}s, send \"{message}\" to {client.RoomName}");
+                            await client.SetTimer(message, seconds);
+                        }
                         else
                         {
                             ConsoleLog.LogError($"Unknown command, \"{tokens[0]}\"");
@@ -93,6 +101,7 @@ namespace ConsoleClient
             Console.WriteLine("/leave\tLeaves the current room");
             Console.WriteLine("{message}\tSends a message to the current room");
             Console.WriteLine("/users\tList users in the current room");
+            Console.WriteLine("/egg {seconds} {message}\tSet an egg timer for the current room.");
         }
     }
 }
